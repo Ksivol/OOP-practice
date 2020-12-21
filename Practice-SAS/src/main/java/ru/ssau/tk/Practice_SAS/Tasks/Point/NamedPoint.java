@@ -1,6 +1,8 @@
 package ru.ssau.tk.Practice_SAS.Tasks.Point;
 
-public class NamedPoint extends Point {
+import ru.ssau.tk.Practice_SAS.Tasks.Generator.Resettable;
+
+public class NamedPoint extends Point implements Resettable {
     private String name;
 
     public NamedPoint(double x, double y, double z) {
