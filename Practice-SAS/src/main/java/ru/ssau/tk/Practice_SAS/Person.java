@@ -16,6 +16,18 @@ public class Person {
         this.passportId = passportId;
     }
 
+    public Person(String firstName, String lastName, int passportId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.passportId = passportId;
+    }
+
+    Person FirstP = new Person();
+    Person SecondP = new Person(firstName, lastName);
+    Person ThirdP = new Person(passportId);
+    Person FourthP = new Person(firstName, lastName, passportId);
+
+
     public String getFirstName() {
         return firstName;
     }
@@ -39,5 +51,6 @@ public class Person {
     public void setPassportId(int passportId) {
         this.passportId = passportId;
     }
+
 
 }
