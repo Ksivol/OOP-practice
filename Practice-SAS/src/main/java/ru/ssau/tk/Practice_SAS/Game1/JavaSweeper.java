@@ -2,7 +2,7 @@ package ru.ssau.tk.Practice_SAS.Game1;
 
 import javax.swing.*;
 import java.awt.*;
-
+import ru.ssau.tk.Practice_SAS.Game1.Sweeper.Box;
 public class JavaSweeper extends JFrame {
 
     private JPanel panel;
@@ -18,6 +18,7 @@ public class JavaSweeper extends JFrame {
 
     private JavaSweeper ()
     {
+        setImages();
         initPanel();
         frameInit ();
     }
@@ -30,8 +31,8 @@ public class JavaSweeper extends JFrame {
             protected void paintComponent (Graphics g)
             {
                 super.paintComponent(g);
-                g.drawImage(getImage("bomb"),0, 0, this);
-                //g.drawImage(getImage("num1"),IMAGE_SIZE, 0, this);
+                for (Box box : Box.values())
+                g.drawImage((Image)box.image,box.ordinal()*IMAGE_SIZE,0,this);
             }
         };
         panel.setPreferredSize(new Dimension(COLS*IMAGE_SIZE,ROWS*IMAGE_SIZE));
@@ -41,11 +42,12 @@ public class JavaSweeper extends JFrame {
     protected void frameInit()
     {
         pack ();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//закрыте программы
         setTitle("Java Sweeper");
         setLocationRelativeTo(null);//по центру
         setResizable(false);//не изменный размер окна
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//закрыте программы
+
     }
 
     private Image getImage (String name)
@@ -53,6 +55,12 @@ public class JavaSweeper extends JFrame {
             ImageIcon icon = new ImageIcon ("res/img/" + name.toLowerCase() + ".png");
             return icon.getImage();
 
+    }
+
+    private void setImages ()
+    {
+        for (Box box : Box.values())
+            box.image = getImage(box.name());
     }
 
 }
