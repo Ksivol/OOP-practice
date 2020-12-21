@@ -36,7 +36,7 @@ public class JavaSweeper extends JFrame {
             {
                 super.paintComponent(g);
                 for (Coord coord : Ranges.getAllCoords()){
-                    g.drawImage((Image)Box.BOMB.image,
+                    g.drawImage((Image)Box.values()[(coord.y + coord.x) % Box.values().length].image,
                             coord.x*IMAGE_SIZE,coord.y*IMAGE_SIZE,this);
                 }
             }
