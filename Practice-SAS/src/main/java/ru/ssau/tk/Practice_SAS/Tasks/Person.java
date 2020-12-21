@@ -1,8 +1,11 @@
 package ru.ssau.tk.Practice_SAS.Tasks;
 
 public class Person {
+    public enum Gender {MALE, FEMALE}
+
     private String firstName, lastName;
     private int passportId;
+    public Gender gender;
 
     public Person() {
     }
@@ -52,5 +55,12 @@ public class Person {
         this.passportId = passportId;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 
 }

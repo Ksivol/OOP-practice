@@ -26,4 +26,14 @@ public class PersonTest {
         assertEquals(firstPerson.getPassportId(), 91374682, DELTA);
         assertEquals(secondPerson.getPassportId(), 33333333, DELTA);
     }
+
+    @Test
+    public void testGender() {
+        Person person = new Person();
+        person.setGender(Person.Gender.MALE);
+        assertEquals(person.getGender(), Person.Gender.MALE);
+        person.setGender(null);
+        assertNull(person.getGender());
+    }
+
 }
