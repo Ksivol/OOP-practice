@@ -40,4 +40,15 @@ public class Points {
         return Points.divide(secondPoint, firstPoint);
     }
 
+    public static double scalarProduct(Point firstVector, Point secondVector) {
+        return firstVector.x * secondVector.x + firstVector.y * secondVector.y + firstVector.z * secondVector.z;
+    }
+
+    public static Point vectorProduct(Point firstVector, Point secondVector) {
+        double newX = firstVector.y * secondVector.z - firstVector.z * secondVector.y;
+        double newY = firstVector.z * secondVector.x - firstVector.x * secondVector.z;
+        double newZ = firstVector.x * secondVector.y - firstVector.y * secondVector.x;
+        return new Point(newX, newY, newZ);
+    }
+
 }
