@@ -4,9 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import ru.ssau.tk.Practice_SAS.Game1.Sweeper.Box;
 import ru.ssau.tk.Practice_SAS.Game1.Sweeper.Coord;
+import ru.ssau.tk.Practice_SAS.Game1.Sweeper.Game;
 import ru.ssau.tk.Practice_SAS.Game1.Sweeper.Ranges;
 
 public class JavaSweeper extends JFrame {
+
+    private Game game;
 
     private JPanel panel;
     private final int COLS = 9;
@@ -21,7 +24,8 @@ public class JavaSweeper extends JFrame {
 
     private JavaSweeper ()
     {
-        Ranges.setSize (new Coord(COLS,ROWS));
+        game = new Game (COLS, ROWS);
+        game.start();
         setImages();
         initPanel();
         frameInit ();
@@ -35,10 +39,10 @@ public class JavaSweeper extends JFrame {
             protected void paintComponent (Graphics g)
             {
                 super.paintComponent(g);
-                for (Coord coord : Ranges.getAllCoords()){
-                    g.drawImage((Image)Box.values()[(coord.y + coord.x) % Box.values().length].image,
+                for (Coord coord : Ranges.getAllCoords())
+                    g.drawImage((Image)game.getBox(coord).image,
                             coord.x*IMAGE_SIZE,coord.y*IMAGE_SIZE,this);
-                }
+
             }
         };
         panel.setPreferredSize(new Dimension(
