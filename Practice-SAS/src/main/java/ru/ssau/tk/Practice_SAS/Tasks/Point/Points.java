@@ -1,4 +1,4 @@
-package ru.ssau.tk.Practice_SAS.Tasks;
+package ru.ssau.tk.Practice_SAS.Tasks.Point;
 
 public class Points {
     private Points() {
