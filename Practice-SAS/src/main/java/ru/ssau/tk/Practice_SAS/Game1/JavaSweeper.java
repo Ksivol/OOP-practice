@@ -3,6 +3,8 @@ package ru.ssau.tk.Practice_SAS.Game1;
 import javax.swing.*;
 import java.awt.*;
 import ru.ssau.tk.Practice_SAS.Game1.Sweeper.Box;
+import ru.ssau.tk.Practice_SAS.Game1.Sweeper.Coord;
+
 public class JavaSweeper extends JFrame {
 
     private JPanel panel;
@@ -31,8 +33,10 @@ public class JavaSweeper extends JFrame {
             protected void paintComponent (Graphics g)
             {
                 super.paintComponent(g);
-                for (Box box : Box.values())
-                g.drawImage((Image)box.image,box.ordinal()*IMAGE_SIZE,0,this);
+                for (Box box : Box.values()){
+                    Coord coord = new Coord (box.ordinal()*IMAGE_SIZE, 0);
+                    g.drawImage((Image)box.image,coord.x,coord.y,this);
+                }
             }
         };
         panel.setPreferredSize(new Dimension(COLS*IMAGE_SIZE,ROWS*IMAGE_SIZE));
@@ -47,6 +51,7 @@ public class JavaSweeper extends JFrame {
         setResizable(false);//не изменный размер окна
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//закрыте программы
+        setIconImage(getImage("icon"));
 
     }
 
