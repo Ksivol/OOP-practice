@@ -23,4 +23,8 @@ public class Points {
         return new Point(firstPoint.x * secondPoint.x, firstPoint.y * secondPoint.y, firstPoint.z * secondPoint.z);
     }
 
+    public static Point enlarge(Point point, double volume) {
+        return new Point(point.x * volume, point.y * volume, point.z * volume);
+    }
+
 }
