@@ -31,4 +31,13 @@ public class Points {
         return point.length();
     }
 
+    public static Point opposite(Point point) {
+        return new Point(-point.x, -point.y, -point.z);
+    }
+
+    public static Point inverse(Point firstPoint) {
+        Point secondPoint = new Point(1, 1, 1);
+        return Points.divide(secondPoint, firstPoint);
+    }
+
 }
