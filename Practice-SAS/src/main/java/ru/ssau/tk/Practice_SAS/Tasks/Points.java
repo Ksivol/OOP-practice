@@ -27,4 +27,8 @@ public class Points {
         return new Point(point.x * volume, point.y * volume, point.z * volume);
     }
 
+    public static double length(Point point) {
+        return point.length();
+    }
+
 }
