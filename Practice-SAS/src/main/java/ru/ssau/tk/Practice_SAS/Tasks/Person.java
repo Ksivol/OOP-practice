@@ -1,4 +1,4 @@
-package ru.ssau.tk.Practice_SAS;
+package ru.ssau.tk.Practice_SAS.Tasks;
 
 public class Person {
     private String firstName, lastName;

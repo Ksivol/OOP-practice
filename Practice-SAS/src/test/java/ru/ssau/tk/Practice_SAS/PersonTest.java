@@ -1,6 +1,7 @@
 package ru.ssau.tk.Practice_SAS;
 
 import org.testng.annotations.Test;
+import ru.ssau.tk.Practice_SAS.Tasks.Person;
 
 import static org.testng.Assert.*;
 
