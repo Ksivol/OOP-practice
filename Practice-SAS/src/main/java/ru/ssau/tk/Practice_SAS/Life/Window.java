@@ -1,6 +1,8 @@
 package ru.ssau.tk.Practice_SAS.Life;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Window implements Runnable {
 
@@ -10,12 +12,14 @@ public class Window implements Runnable {
     @Override
     public void run() {
         initFrame();
+        initBoxes();
+        initTimer();
     }
 
     void initFrame() {
         frame = new JFrame();
         frame.getContentPane().setLayout(null);
-        frame.setSize(Config.SIZE * Config.WIDTH, Config.SIZE * Config.HEIGHT);
+        frame.setSize(Config.SIZE * Config.WIDTH+30, Config.SIZE * Config.HEIGHT+45);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -23,13 +27,49 @@ public class Window implements Runnable {
     }
 
     void initBoxes() {
-        boxes = new Box[Config.WIDTH][Config.HEIGHT];
+        boxes = new Box [Config.WIDTH] [Config.HEIGHT];
         for (int x = 0; x < Config.WIDTH; x++)
-            for (int y = 0; y < Config.HEIGHT; y++) {
-                Cell cell = new Cell();
-                boxes[x][y] = new Box(x, y, cell);
+            for (int y = 0; y < Config.HEIGHT; y++)
+            {
+                boxes[x][y] = new Box(x, y);
                 frame.add(boxes[x][y]);
             }
+        for (int x = 0; x < Config.WIDTH; x++)
+            for (int y = 0; y < Config.HEIGHT; y++) {
+                for (int sx = -1; sx <= +1; sx++)
+                    for (int sy = -1; sy <= +1; sy++)
+                        if (!(sx == 0 && sy == 0))
+                            boxes[x][y].cell.addNear(boxes
+                                    [(x + sx + Config.WIDTH) % Config.WIDTH]
+                                    [(y + sy + Config.HEIGHT) % Config.HEIGHT].cell);
+
+            }
+        for (int x = 10; x < 15; x++) {
+            boxes[x][10].cell.status = Status.LIVE;
+            boxes[x][10] .setColor();
+        }
+    }
+
+    private void initTimer() {
+        TimerListener t1 = new TimerListener();
+        Timer timer = new Timer(Config.SLEEPMS, t1);
+        timer.start();
+    }
+
+    private class TimerListener implements ActionListener {
+        boolean flop = false;
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            flop = !flop;
+            for (int x=0; x < Config.WIDTH; x++)
+                for (int y=0; y < Config.HEIGHT; y++)
+                {
+                    if (flop)
+                        boxes[x][y].step1();
+                    else
+                        boxes[x][y].step2();
+                }
+        }
     }
 
 }
