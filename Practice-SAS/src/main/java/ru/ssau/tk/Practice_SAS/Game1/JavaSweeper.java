@@ -2,6 +2,9 @@ package ru.ssau.tk.Practice_SAS.Game1;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import ru.ssau.tk.Practice_SAS.Game1.Sweeper.Box;
 import ru.ssau.tk.Practice_SAS.Game1.Sweeper.Coord;
 import ru.ssau.tk.Practice_SAS.Game1.Sweeper.Game;
@@ -46,6 +49,19 @@ public class JavaSweeper extends JFrame {
 
             }
         };
+
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e)
+            {
+                int x = e.getX() / IMAGE_SIZE;
+                int y = e.getY() / IMAGE_SIZE;
+                Coord coord = new Coord(x,y);
+                if (e.getButton() == MouseEvent.BUTTON1)
+                    game.pressLeftButton (coord);
+                panel.repaint();
+            }
+        });
         panel.setPreferredSize(new Dimension(
                 Ranges.getSize().x*IMAGE_SIZE,
                 Ranges.getSize().y*IMAGE_SIZE));

@@ -13,4 +13,8 @@ public class Flag {
         return flagMap.get(coord);
     }
 
+    public void setOpenedToBox(Coord coord)
+    {
+        flagMap.set (coord, Box.OPENED);
+    }
 }
