@@ -2,10 +2,12 @@ package ru.ssau.tk.Practice_SAS.Game1.Sweeper;
 
 public class Flag {
     private Matrix flagMap;
+    private int countOfCloseBoxes;
 
     void start ()
     {
         flagMap = new Matrix(Box.CLOSED);
+        countOfCloseBoxes = Ranges.getSize().x*Ranges.getSize().y;
     }
 
     Box get (Coord coord)
@@ -16,6 +18,7 @@ public class Flag {
     public void setOpenedToBox(Coord coord)
     {
         flagMap.set (coord, Box.OPENED);
+        countOfCloseBoxes --;
     }
 
     void toggleFlagedToBox (Coord coord)
@@ -33,9 +36,30 @@ public class Flag {
         flagMap.set (coord, Box.CLOSED);
     }
 
-    public void setClosedToBox(Coord coord)
+    private void setClosedToBox(Coord coord)
     {
         flagMap.set (coord, Box.FLAGED);
     }
 
+    int getCountOfClosedBoxes()
+    {
+        return countOfCloseBoxes;
+    }
+
+    void setBombedToBox(Coord coord)
+    {
+        flagMap.set(coord, Box.BOMBED);
+    }
+
+    void setOpenedToClosedBombBox(Coord coord)
+    {
+        if (flagMap.get(coord) == Box.CLOSED)
+            flagMap.set(coord, Box.OPENED);
+    }
+
+    void setNoBombToFlagedSafeBox(Coord coord)
+    {
+        if (flagMap.get(coord) == Box.FLAGED)
+            flagMap.set(coord, Box.NOBOMB);
+    }
 }

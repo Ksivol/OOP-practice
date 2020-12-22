@@ -39,7 +39,7 @@ public class JavaSweeper extends JFrame {
 
     private void initLabel ()
     {
-        label = new JLabel("Think twice!");
+        label = new JLabel(" ");
         add (label, BorderLayout.SOUTH);
     }
 
