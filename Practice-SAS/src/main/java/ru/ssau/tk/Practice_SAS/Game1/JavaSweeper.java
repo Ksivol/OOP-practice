@@ -15,6 +15,7 @@ public class JavaSweeper extends JFrame {
     private Game game;
 
     private JPanel panel;
+    private JLabel label;
     private final int COLS = 9;
     private final int ROWS = 9;
     private final int BOMBS = 10;
@@ -31,8 +32,15 @@ public class JavaSweeper extends JFrame {
         game = new Game (COLS, ROWS, BOMBS);
         game.start();
         setImages();
+        initLabel();
         initPanel();
         frameInit ();
+    }
+
+    private void initLabel ()
+    {
+        label = new JLabel("Welcome!");
+        add (label, BorderLayout.SOUTH);
     }
 
     private void initPanel ()
@@ -59,6 +67,10 @@ public class JavaSweeper extends JFrame {
                 Coord coord = new Coord(x,y);
                 if (e.getButton() == MouseEvent.BUTTON1)
                     game.pressLeftButton (coord);
+                if (e.getButton() == MouseEvent.BUTTON3)
+                    game.pressRightButton (coord);
+                if (e.getButton() == MouseEvent.BUTTON2)
+                    game.start();
                 panel.repaint();
             }
         });
@@ -70,15 +82,13 @@ public class JavaSweeper extends JFrame {
 
     protected void frameInit()
     {
-        pack ();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//закрыте программы
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);//закрыте программы
         setTitle("Java Sweeper");
-        setLocationRelativeTo(null);//по центру
         setResizable(false);//не изменный размер окна
         setVisible(true);
+        pack ();
+        setLocationRelativeTo(null);//по центру
         setIconImage(getImage("icon"));
-
-
     }
 
     private Image getImage (String name)

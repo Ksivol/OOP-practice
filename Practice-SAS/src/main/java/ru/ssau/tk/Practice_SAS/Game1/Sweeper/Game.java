@@ -4,6 +4,12 @@ public class Game {
 
     private Bomb bomb;
     private Flag flag;
+    private GameState state;
+
+    public GameState getState() {
+        return state;
+    }
+
 
     public Game (int cols, int rows,int bombs)
     {
@@ -16,6 +22,7 @@ public class Game {
     {
         bomb.start();
         flag.start();
+        state = GameState.PLAYED;
     }
 
     public Box getBox (Coord coord)
@@ -30,4 +37,10 @@ public class Game {
     {
         flag.setOpenedToBox (coord);
     }
+
+    public void pressRightButton(Coord coord)
+    {
+        flag.toggleFlagedToBox (coord);
+    }
+
 }
