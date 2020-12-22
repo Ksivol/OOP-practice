@@ -19,4 +19,5 @@ public class Game {
     {
         return bomb.get(coord);
     }
+
 }
