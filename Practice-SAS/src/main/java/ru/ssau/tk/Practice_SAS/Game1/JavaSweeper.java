@@ -39,7 +39,7 @@ public class JavaSweeper extends JFrame {
 
     private void initLabel ()
     {
-        label = new JLabel("Welcome!");
+        label = new JLabel("Think twice!");
         add (label, BorderLayout.SOUTH);
     }
 
@@ -71,13 +71,26 @@ public class JavaSweeper extends JFrame {
                     game.pressRightButton (coord);
                 if (e.getButton() == MouseEvent.BUTTON2)
                     game.start();
+                label.setText(getMessage ());
                 panel.repaint();
+
             }
         });
         panel.setPreferredSize(new Dimension(
                 Ranges.getSize().x*IMAGE_SIZE,
                 Ranges.getSize().y*IMAGE_SIZE));
         add (panel);
+    }
+
+    private String getMessage()
+    {
+        switch (game.getState())
+        {
+            case PLAYED: return  "Think twice!";
+            case BOMBED: return  "YOU LOSE! BIG BA-DA-BOOM!";
+            case WINNER: return  "CONGRATULATIONS!";
+            default    : return  "Welcome";
+        }
     }
 
     protected void frameInit()
