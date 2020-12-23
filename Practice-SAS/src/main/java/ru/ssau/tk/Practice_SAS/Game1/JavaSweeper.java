@@ -22,97 +22,89 @@ public class JavaSweeper extends JFrame {
     private final int IMAGE_SIZE = 50;
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         new JavaSweeper();
     }
 
-    private JavaSweeper ()
-    {
-        game = new Game (COLS, ROWS, BOMBS);
+    private JavaSweeper() {
+        game = new Game(COLS, ROWS, BOMBS);
         game.start();
         setImages();
         initLabel();
         initPanel();
-        frameInit ();
+        frameInit();
     }
 
-    private void initLabel ()
-    {
+    private void initLabel() {
         label = new JLabel(" ");
-        add (label, BorderLayout.SOUTH);
+        add(label, BorderLayout.SOUTH);
     }
 
-    private void initPanel ()
-    {
-        panel = new JPanel()
-        {
+    private void initPanel() {
+        panel = new JPanel() {
             @Override
-            protected void paintComponent (Graphics g)
-            {
+            protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 for (Coord coord : Ranges.getAllCoords())
-                    g.drawImage((Image)game.getBox(coord).image,
-                            coord.x*IMAGE_SIZE,coord.y*IMAGE_SIZE,this);
+                    g.drawImage((Image) game.getBox(coord).image,
+                            coord.x * IMAGE_SIZE, coord.y * IMAGE_SIZE, this);
 
             }
         };
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(MouseEvent e)
-            {
+            public void mousePressed(MouseEvent e) {
                 int x = e.getX() / IMAGE_SIZE;
                 int y = e.getY() / IMAGE_SIZE;
-                Coord coord = new Coord(x,y);
+                Coord coord = new Coord(x, y);
                 if (e.getButton() == MouseEvent.BUTTON1)
-                    game.pressLeftButton (coord);
+                    game.pressLeftButton(coord);
                 if (e.getButton() == MouseEvent.BUTTON3)
-                    game.pressRightButton (coord);
+                    game.pressRightButton(coord);
                 if (e.getButton() == MouseEvent.BUTTON2)
                     game.start();
-                label.setText(getMessage ());
+                label.setText(getMessage());
                 panel.repaint();
 
             }
         });
         panel.setPreferredSize(new Dimension(
-                Ranges.getSize().x*IMAGE_SIZE,
-                Ranges.getSize().y*IMAGE_SIZE));
-        add (panel);
+                Ranges.getSize().x * IMAGE_SIZE,
+                Ranges.getSize().y * IMAGE_SIZE));
+        add(panel);
     }
 
-    private String getMessage()
-    {
-        switch (game.getState())
-        {
-            case PLAYED: return  "Think twice!";
-            case BOMBED: return  "YOU LOSE! BIG BA-DA-BOOM!";
-            case WINNER: return  "CONGRATULATIONS!";
-            default    : return  "Welcome";
+    private String getMessage() {
+        switch (game.getState()) {
+            case PLAYED:
+                return "Think twice!";
+            case BOMBED:
+                return "YOU LOSE! BIG BA-DA-BOOM!";
+            case WINNER:
+                return "CONGRATULATIONS!";
+            default:
+                return "Welcome";
         }
     }
 
-    protected void frameInit()
-    {
+    protected void frameInit() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);//закрыте программы
         setTitle("Java Sweeper");
         setResizable(false);//не изменный размер окна
         setVisible(true);
-        pack ();
+        pack();
         setLocationRelativeTo(null);//по центру
         setIconImage(getImage("icon"));
     }
 
-    private Image getImage (String name)
-    {
-            ImageIcon icon = new ImageIcon ("res/img/" + name.toLowerCase() + ".png");
-            return icon.getImage();
+    private Image getImage(String name) {
+        ImageIcon icon = new ImageIcon("res/img/" + name.toLowerCase() + ".png");
+        return icon.getImage();
 
     }
 
-    private void setImages ()
-    {
+    private void setImages() {
         for (Box box : Box.values())
             box.image = getImage(box.name());
     }
