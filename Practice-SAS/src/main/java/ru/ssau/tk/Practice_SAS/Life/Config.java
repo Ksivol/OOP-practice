@@ -18,7 +18,7 @@ public class Config {
             case LIVE:
                 return Color.WHITE;
             case DIED:
-                return Color.BLUE;
+                return Color.YELLOW;
         }
     }
 }
