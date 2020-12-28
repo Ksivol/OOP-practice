@@ -17,6 +17,8 @@ public class Display {
     private static Graphics bufferGraphics;
     private static int clearColor;
 
+    private static float delta = 0;
+
     public static void create(int wight, int height, String title, int _clearColor){
         if(created)
             return;
@@ -47,7 +49,9 @@ public class Display {
     }
 
     public static void render(){
-        
+        bufferGraphics.setColor(new Color(0xff0000ff));
+        bufferGraphics.fillOval((int)(350+(Math.sin(delta)*200)),250,100,100);
+        delta += 0.02f;
     }
 
     public static void  swapBuffers(){
