@@ -60,6 +60,12 @@ public class Game implements Runnable {
 
     public void run() {
 
+        int fps = 0;
+        int upd = 0;
+        int updl = 0;
+
+        long count = 0;
+
         float delta = 0;
 
         long lastTime = Time.get();
@@ -68,15 +74,25 @@ public class Game implements Runnable {
             long elapsedTime = now - lastTime;
             lastTime = now;
 
+            count+= elapsedTime;
+
             boolean render = false;
             delta += (elapsedTime / UPDATE_INTERVAL);
             while (delta > 1) {
                 update();
+                upd++;
                 delta--;
-                render = true;
+                if (render){
+                    updl++;
+                }
+                else{
+                    render = true;
+                }
             }
-            if (render)
+            if (render){
                 render();
+                fps++;
+            }
             else {
                 try {
                     Thread.sleep(IDLE_TIME);
@@ -85,6 +101,13 @@ public class Game implements Runnable {
                 }
             }
 
+            if (count>= Time.SECOND){
+                Display.setTitle(TITLE+ "|| Fps:"+fps+"| Upd:"+ upd+"| Updl:" + updl);
+                upd=0;
+                updl=0;
+                fps=0;
+                count=0;
+            }
 
         }
 
