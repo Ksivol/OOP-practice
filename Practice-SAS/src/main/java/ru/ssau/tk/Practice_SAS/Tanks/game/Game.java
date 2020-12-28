@@ -2,6 +2,8 @@ package ru.ssau.tk.Practice_SAS.Tanks.game;
 
 import ru.ssau.tk.Practice_SAS.Tanks.IO.Input;
 import ru.ssau.tk.Practice_SAS.Tanks.display.Display;
+import ru.ssau.tk.Practice_SAS.Tanks.graphics.Sprite;
+import ru.ssau.tk.Practice_SAS.Tanks.graphics.SpriteSheet;
 import ru.ssau.tk.Practice_SAS.Tanks.graphics.TextureAtlas;
 import ru.ssau.tk.Practice_SAS.Tanks.utils.Time;
 
@@ -27,6 +29,8 @@ public class Game implements Runnable {
     private Graphics2D graphics;
     private Input input;
     private TextureAtlas atlas;
+    private SpriteSheet sheet;
+    private Sprite sprite;
 
     float x = 350;
     float y = 250;
@@ -42,6 +46,8 @@ public class Game implements Runnable {
         input = new Input();
         Display.addInputListener(input);
         atlas = new TextureAtlas(ATLAS_FILE_NAME);
+        sheet = new SpriteSheet(atlas.cut(1*16,9*16,16*2,16),2,16 );
+        sprite = new Sprite(sheet,1);
     }
 
     public synchronized void start() {
@@ -86,11 +92,9 @@ public class Game implements Runnable {
 
     private void render() {
         Display.clear();
-        graphics.setColor(Color.WHITE);
 
-        graphics.drawImage(atlas.cut(0,0,32,32),300,300, null);
+        sprite.render(graphics,x,y);
 
-        //graphics.fillOval((int)(x+Math.sin(delta)*200),(int)(y),(int)radius*2,(int)radius*2);
         Display.swapBuffers();
     }
 
