@@ -34,4 +34,21 @@ public class Array {
         return myArray;
     }
 
+
+    public int[] arrayFibonacci(int Length) {
+        if (Length == 1) {
+            return new int[]{0};
+        }
+        if (Length == 2) {
+            return new int[]{0, 1};
+        }
+        int[] fibArray = new int[Length];
+        fibArray[0] = 0;
+        fibArray[1] = 1;
+        fibArray[2] = 1;
+        for (int i = 3; i < Length; i++) {
+            fibArray[i] = fibArray[i - 1] + fibArray[i - 2];
+        }
+        return fibArray;
+    }
 }
