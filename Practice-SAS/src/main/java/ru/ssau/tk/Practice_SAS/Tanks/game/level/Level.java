@@ -3,15 +3,17 @@ package ru.ssau.tk.Practice_SAS.Tanks.game.level;
 import ru.ssau.tk.Practice_SAS.Tanks.game.Game;
 import ru.ssau.tk.Practice_SAS.Tanks.graphics.TextureAtlas;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Level {
 
     public static final int TILE_SCALE = 8;
-    public static final int TILE_IN_GAME_SCALE=1;
-    public static final int TILES_IN_WIGHT = Game.WIGHT/(TILE_SCALE*TILE_IN_GAME_SCALE);
-    public static final int TILES_IN_HEIGHT = Game.HEIGHT/(TILE_SCALE*TILE_IN_GAME_SCALE);
+    public static final int TILE_IN_GAME_SCALE=2;
+    public static final int SCALED_TALE_SIZE = TILE_SCALE*TILE_IN_GAME_SCALE;
+    public static final int TILES_IN_WIGHT = Game.WIGHT/SCALED_TALE_SIZE;
+    public static final int TILES_IN_HEIGHT = Game.HEIGHT/SCALED_TALE_SIZE;
 
 
     private int[][] tileMap;
@@ -28,7 +30,9 @@ public class Level {
         tiles.put(TileType.ICE, new Tile(atlas.cut(36*TILE_SCALE,4*TILE_SCALE,TILE_SCALE,TILE_SCALE),TILE_IN_GAME_SCALE,TileType.ICE));
         tiles.put(TileType.EMPTY, new Tile(atlas.cut(36*TILE_SCALE,6*TILE_SCALE,TILE_SCALE,TILE_SCALE),TILE_IN_GAME_SCALE,TileType.EMPTY));
 
+        tileMap = new int[TILES_IN_WIGHT][TILES_IN_HEIGHT];
 
+        tileMap[10][10] = TileType.BRICK.numeric();
     }
 
     public void update(){
@@ -36,8 +40,12 @@ public class Level {
 
     }
 
-    public void render(){
-
+    public void render(Graphics2D g){
+        for (int i =0; i< tileMap.length; i++){
+            for (int j =0; j< tileMap[i].length; j++){
+                tiles.get(TileType.fromNumeric(tileMap[i][j])).render(g,j*SCALED_TALE_SIZE,i*SCALED_TALE_SIZE);
+            }
+        }
 
     }
 

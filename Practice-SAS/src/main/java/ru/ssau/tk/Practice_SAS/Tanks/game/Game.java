@@ -2,6 +2,7 @@ package ru.ssau.tk.Practice_SAS.Tanks.game;
 
 import ru.ssau.tk.Practice_SAS.Tanks.IO.Input;
 import ru.ssau.tk.Practice_SAS.Tanks.display.Display;
+import ru.ssau.tk.Practice_SAS.Tanks.game.level.Level;
 import ru.ssau.tk.Practice_SAS.Tanks.graphics.Sprite;
 import ru.ssau.tk.Practice_SAS.Tanks.graphics.SpriteSheet;
 import ru.ssau.tk.Practice_SAS.Tanks.graphics.TextureAtlas;
@@ -30,6 +31,7 @@ public class Game implements Runnable {
     private Input input;
     private TextureAtlas atlas;
     private Player player;
+    private Level lvl;
 
     public Game() {
         running = false;
@@ -39,6 +41,7 @@ public class Game implements Runnable {
         Display.addInputListener(input);
         atlas = new TextureAtlas(ATLAS_FILE_NAME);
         player = new Player(300,300,2,3,atlas);
+        lvl = new Level(atlas);
     }
 
     public synchronized void start() {
@@ -70,10 +73,12 @@ public class Game implements Runnable {
 
     private void update() {
         player.update(input);
+        lvl.update();
     }
 
     private void render() {
         Display.clear();
+        lvl.render(graphics);
         player.render(graphics);
         Display.swapBuffers();
     }
