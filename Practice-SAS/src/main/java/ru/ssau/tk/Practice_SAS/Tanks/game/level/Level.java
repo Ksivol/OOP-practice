@@ -5,7 +5,9 @@ import ru.ssau.tk.Practice_SAS.Tanks.graphics.TextureAtlas;
 import ru.ssau.tk.Practice_SAS.Tanks.utils.Utils;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Level {
@@ -19,6 +21,7 @@ public class Level {
 
     private Integer[][] tileMap;
     private Map<TileType, Tile> tiles;
+    private List<Point> grassCords;
 
 
     public Level(TextureAtlas atlas){
@@ -32,6 +35,14 @@ public class Level {
         tiles.put(TileType.EMPTY, new Tile(atlas.cut(36*TILE_SCALE,6*TILE_SCALE,TILE_SCALE,TILE_SCALE),TILE_IN_GAME_SCALE,TileType.EMPTY));
 
         tileMap = Utils.levelParser("src/main/java/ru/ssau/tk/Practice_SAS/Tanks/res/level.lvl");
+        grassCords = new ArrayList<Point>();
+        for (int i=0;i<tileMap.length;i++){
+            for (int j=0;j<tileMap[i].length;j++){
+                Tile tile = tiles.get(TileType.fromNumeric(tileMap[i][j]));
+                if (tile.type() == TileType.GRASS)
+                    grassCords.add(new Point(j*SCALED_TALE_SIZE,i*SCALED_TALE_SIZE));
+            }
+        }
     }
 
     public void update(){
@@ -42,10 +53,18 @@ public class Level {
     public void render(Graphics2D g){
         for (int i =0; i< tileMap.length; i++){
             for (int j =0; j< tileMap[i].length; j++){
-                tiles.get(TileType.fromNumeric(tileMap[i][j])).render(g,j*SCALED_TALE_SIZE,i*SCALED_TALE_SIZE);
+                Tile tile = tiles.get(TileType.fromNumeric(tileMap[i][j]));
+                if (tile.type() != TileType.GRASS)
+                    tile.render(g,j*SCALED_TALE_SIZE,i*SCALED_TALE_SIZE);
             }
         }
 
+    }
+
+    public void renderGrass(Graphics2D g){
+        for (Point p : grassCords){
+            tiles.get(TileType.GRASS).render(g, p.x, p.y);
+        }
     }
 
 
