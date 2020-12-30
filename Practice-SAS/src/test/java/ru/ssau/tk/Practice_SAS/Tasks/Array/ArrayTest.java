@@ -83,5 +83,15 @@ public class ArrayTest {
         assertEquals(newArray[8], 64);
         assertEquals(newArray[9], 81);
     }
+
+    @Test
+    public void testArrayIntegers() {
+        Array checkArray = new Array();
+        assertEquals(checkArray.arrayIntegers(4), new int[]{1, 2, 4, 5});
+        assertEquals(checkArray.arrayIntegers(5), new int[]{1, 2, 4, 5, 7});
+        assertEquals(checkArray.arrayIntegers(10), new int[]{1, 2, 4, 5, 7, 8, 10, 11, 13, 14});
+    }
+
+
 }
 

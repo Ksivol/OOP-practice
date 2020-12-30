@@ -61,4 +61,19 @@ public class Array {
         return array;
     }
 
+
+    public int[] arrayIntegers(int Length) {
+        int[] numbersArray = new int[Length];
+        int k = 1;
+        for (int i = 0; i < Length; i++) {
+            numbersArray[i] = k;
+            k++;
+            if (k % 3 == 0) {
+                k++;
+            }
+        }
+        return numbersArray;
+    }
+
+
 }
