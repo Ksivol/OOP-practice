@@ -14,4 +14,14 @@ public class Array {
         ones[Length - 1] = 2;
         return ones;
     }
+    public int[] arrayOddNumbers(int Length) {
+    int[] myArray = new int[Length];
+    int k = 1;
+        for (int i = 0; i < Length; i++) {
+        myArray[i] = k;
+        k = k + 2;
+    }
+        return myArray;
+    }
+
 }

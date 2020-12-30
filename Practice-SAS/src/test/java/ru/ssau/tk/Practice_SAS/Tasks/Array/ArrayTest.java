@@ -25,4 +25,18 @@ public class ArrayTest {
         assertEquals(newArray[3], 2);
     }
 
+    @Test
+    public void testArrayOddNumbers() {
+        Array check = new Array();
+        int[] newArray = check.arrayOddNumbers(7);
+        assertEquals(newArray[0], 1);
+        assertEquals(newArray[1], 3);
+        assertEquals(newArray[2], 5);
+        assertEquals(newArray[3], 7);
+        assertEquals(newArray[4], 9);
+        assertEquals(newArray[5], 11);
+        assertEquals(newArray[6], 13);
+
+    }
+
 }
