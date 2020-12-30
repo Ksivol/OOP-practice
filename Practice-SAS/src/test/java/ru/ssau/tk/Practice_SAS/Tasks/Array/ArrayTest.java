@@ -67,5 +67,21 @@ public class ArrayTest {
         assertEquals(newArray[8], 21);
         assertEquals(newArray[9], 34);
     }
+
+    @Test
+    public void testArraySqrIndex() {
+        Array check = new Array();
+        int[] newArray = check.arraySqrIndex(10);
+        assertEquals(newArray[0], 0);
+        assertEquals(newArray[1], 1);
+        assertEquals(newArray[2], 4);
+        assertEquals(newArray[3], 9);
+        assertEquals(newArray[4], 16);
+        assertEquals(newArray[5], 25);
+        assertEquals(newArray[6], 36);
+        assertEquals(newArray[7], 49);
+        assertEquals(newArray[8], 64);
+        assertEquals(newArray[9], 81);
+    }
 }
 

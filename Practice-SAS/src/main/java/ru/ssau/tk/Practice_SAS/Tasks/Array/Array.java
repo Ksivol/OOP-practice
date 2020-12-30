@@ -51,4 +51,14 @@ public class Array {
         }
         return fibArray;
     }
+
+
+    public int[] arraySqrIndex(int Length) {
+        int[] array = new int[Length];
+        for (int i = 0; i < Length; i++) {
+            array[i] = i * i;
+        }
+        return array;
+    }
+
 }
