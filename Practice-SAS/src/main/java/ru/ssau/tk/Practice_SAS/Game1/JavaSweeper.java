@@ -99,7 +99,7 @@ public class JavaSweeper extends JFrame {
     }
 
     private Image getImage(String name) {
-        ImageIcon icon = new ImageIcon("res/img/" + name.toLowerCase() + ".png");
+        ImageIcon icon = new ImageIcon("src/main/resources/Sweeper/" + name.toLowerCase() + ".png");
         return icon.getImage();
 
     }
