@@ -39,4 +39,16 @@ public class ArrayTest {
 
     }
 
+    @Test
+    public void testArrayEvenNumbersBack() {
+        Array check = new Array();
+        int[] newArray = check.arrayEvenNumbersBack(7);
+        assertEquals(newArray[0], 14);
+        assertEquals(newArray[1], 12);
+        assertEquals(newArray[2], 10);
+        assertEquals(newArray[3], 8);
+        assertEquals(newArray[4], 6);
+        assertEquals(newArray[5], 4);
+        assertEquals(newArray[6], 2);
+    }
 }

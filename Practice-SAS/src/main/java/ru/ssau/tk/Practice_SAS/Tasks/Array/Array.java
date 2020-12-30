@@ -20,7 +20,17 @@ public class Array {
         for (int i = 0; i < Length; i++) {
         myArray[i] = k;
         k = k + 2;
+        }
+        return myArray;
     }
+
+    public int[] arrayEvenNumbersBack(int Length) {
+        int[] myArray = new int[Length];
+        int k = 2 * Length;
+        for (int i = 0; i < Length; i++) {
+            myArray[i] = k;
+            k = k - 2;
+        }
         return myArray;
     }
 
