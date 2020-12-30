@@ -1,6 +1,7 @@
 package ru.ssau.tk.Practice_SAS.Tasks.Array;
 
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 public class ArrayTest {
@@ -92,6 +93,12 @@ public class ArrayTest {
         assertEquals(checkArray.arrayIntegers(10), new int[]{1, 2, 4, 5, 7, 8, 10, 11, 13, 14});
     }
 
+    @Test
+    public void testGetArithmeticProgression() {
+        assertEquals(Array.arrayArithmeticProgression(2, 5, -2), new double[]{5, 3});
+        assertEquals(Array.arrayArithmeticProgression(5, -1, 2), new double[]{-1, 1, 3, 5, 7});
+        assertEquals(Array.arrayArithmeticProgression(3, 0, 4), new double[]{0, 4, 8});
+    }
 
 }
 

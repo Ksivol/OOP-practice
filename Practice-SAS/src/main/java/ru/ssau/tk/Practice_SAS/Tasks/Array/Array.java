@@ -1,7 +1,7 @@
 package ru.ssau.tk.Practice_SAS.Tasks.Array;
 
 public class Array {
-    public int[] arrayLength(int Length){
+    public int[] arrayLength(int Length) {
         return new int[Length];
     }
 
@@ -14,12 +14,13 @@ public class Array {
         ones[Length - 1] = 2;
         return ones;
     }
+
     public int[] arrayOddNumbers(int Length) {
-    int[] myArray = new int[Length];
-    int k = 1;
+        int[] myArray = new int[Length];
+        int k = 1;
         for (int i = 0; i < Length; i++) {
-        myArray[i] = k;
-        k = k + 2;
+            myArray[i] = k;
+            k = k + 2;
         }
         return myArray;
     }
@@ -76,4 +77,12 @@ public class Array {
     }
 
 
+    static double[] arrayArithmeticProgression(int n, double a1, double d) {
+        double[] array = new double[n];
+        array[0] = a1;
+        for (int i = 1; i < n; i++) {
+            array[i] = array[i - 1] + d;
+        }
+        return array;
+    }
 }
