@@ -15,4 +15,14 @@ public class ArrayTest {
         assertNotEquals(othArray.length, 17);
     }
 
+    @Test
+    public void testGenerateArray2() {
+        Array check = new Array();
+        int[] newArray = check.generateArray2(4);
+        assertEquals(newArray[0], 2);
+        assertEquals(newArray[1], 1);
+        assertEquals(newArray[2], 1);
+        assertEquals(newArray[3], 2);
+    }
+
 }
